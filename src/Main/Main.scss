@@ -1,0 +1,313 @@
+$colors: (
+  work: #ff8b64,
+  play: #55c2e6,
+  study: #ff5e7d,
+  exercise: #4bcf82,
+  social: #7335d2,
+  self: #f1c75b,
+);
+
+$back-imgs: (
+  work: url("./Images/icon-work.svg"),
+  play: url("./Images/icon-play.svg"),
+  study: url("./Images/icon-study.svg"),
+  exercise: url("./Images/icon-exercise.svg"),
+  social: url("./Images/icon-social.svg"),
+  self: url("./Images/icon-self-care.svg"),
+);
+
+$delays: (
+  work: 1.5s,
+  play: 1.6s,
+  study: 1.7s,
+  exercise: 1.8s,
+  social: 2s,
+  self: 2.3s,
+);
+
+@keyframes startUp {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+main {
+  display: flex;
+
+  .profile {
+    background-color: #1c204b;
+    border-radius: 15px;
+    height: fit-content;
+    animation: 1.4s ease startUp;
+
+    div {
+      background-color: #5747ea;
+      padding: 2.3125rem 5.25rem 5rem 2rem;
+      border-radius: 15px;
+
+      .profile-img {
+        width: 4.875rem;
+        height: auto;
+        border: 3px white solid;
+        box-sizing: border-box;
+        border-radius: 50%;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      }
+
+      h1 {
+        font-size: 40px;
+        line-height: 47px;
+        font-weight: 300;
+        max-width: 8.6875rem;
+        margin-top: 0.875rem;
+        color: #ffffff;
+
+        span {
+          font-size: 15px;
+          line-height: 18px;
+          font-weight: normal;
+          color: #bbc0ff;
+        }
+      }
+    }
+
+    ul {
+      padding: 1.625rem 0 0.75rem 2rem;
+      list-style: none;
+      li {
+        button {
+          font-size: 18px;
+          line-height: 21px;
+          font-weight: normal;
+          margin-bottom: 21px;
+          color: #7078c9;
+          border: none;
+          background-color: transparent;
+          font-family: "Rubik", sans-serif;
+        }
+
+        .button-active {
+          color: white;
+        }
+
+        button:hover {
+          color: white;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(9.375rem, 15.9375rem));
+    gap: 1.875rem;
+    margin-left: 1.875rem;
+    list-style: none;
+
+    li {
+      width: 100%;
+      border-radius: 15px;
+      z-index: 2;
+      animation: ease startUp;
+
+      .content-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1.8125rem 0 2rem 1.875rem;
+        background: #1c204b;
+        border-radius: 15px;
+
+        h2 {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 18px;
+          line-height: 21px;
+          font-weight: 500;
+          color: #ffffff;
+          width: 100%;
+
+          img {
+            margin-right: 1.875rem;
+          }
+
+          img:hover {
+            filter: brightness(0) invert(1);
+            cursor: pointer;
+          }
+        }
+
+        div {
+          h3 {
+            font-size: 56px;
+            line-height: 66px;
+            font-weight: 300;
+            color: #ffffff;
+            margin: 1.5rem 0 0.5rem 0;
+          }
+
+          p {
+            font-size: 15px;
+            line-height: 18px;
+            font-weight: normal;
+            color: #bbc0ff;
+          }
+        }
+      }
+    }
+
+    li:hover {
+      cursor: pointer;
+      div {
+        background: #33397a;
+      }
+    }
+
+    li::before {
+      content: "";
+      display: block;
+      position: relative;
+      height: 4.6875rem;
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: -1.875rem;
+      z-index: -1;
+    }
+
+    @each $key, $val in $colors {
+      .#{$key}::before {
+        background-color: $val;
+      }
+    }
+
+    @each $key, $val in $back-imgs {
+      .#{$key}::before {
+        background-image: $val;
+        background-repeat: no-repeat;
+        background-position: top right;
+      }
+    }
+
+    @each $key, $val in $delays {
+      .#{$key} {
+        animation-duration: $val;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  main {
+    flex-direction: column;
+
+    .profile {
+      margin-bottom: 2.5rem;
+
+      div {
+        h1 {
+          max-width: 18.75rem;
+        }
+      }
+
+      ul {
+        display: flex;
+        justify-content: space-between;
+        padding: 3rem 2.125rem;
+
+        li {
+          button {
+            margin-bottom: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+
+    .stats {
+      grid-template-columns: repeat(2, minmax(15.9375rem, 1fr));
+      margin-left: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  main {
+    width: 100%;
+
+    .profile {
+      margin-bottom: 1.5rem;
+      div {
+        display: flex;
+        align-items: center;
+        padding: 2.1875rem 0 2.125rem 2rem;
+
+        .profile-img {
+          width: 4rem;
+          margin-right: 1.25rem;
+        }
+
+        h1 {
+          font-size: 24px;
+          line-height: 28px;
+          max-width: 10.75rem;
+        }
+      }
+
+      ul {
+        display: flex;
+        justify-content: space-between;
+        padding: 1.5rem 2.125rem 1.5625rem;
+
+        li {
+          button {
+            margin-bottom: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+
+    .stats {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 1.5rem;
+
+      li {
+        width: 100%;
+
+        .content-div {
+          padding: 1.75rem 1.5rem;
+
+          h2 {
+            img {
+              margin-right: 0;
+            }
+          }
+
+          div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            h3 {
+              font-size: 32px;
+              line-height: 38px;
+              margin: 0.4375rem 0 0 0;
+            }
+          }
+        }
+      }
+
+      li::before {
+        margin-bottom: -2.3125rem;
+      }
+    }
+  }
+}

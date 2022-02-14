@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0e1323;
+  min-height: 100vh;
+  padding: 3rem 1rem;
+  font-family: "Rubik", sans-serif;
+}
+
+@media only screen and (max-width: 580px) {
+  .App {
+    padding: 81px 1.5rem;
+  }
+}
